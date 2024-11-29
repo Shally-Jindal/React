@@ -1,23 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import WorkTile from './Components/WorkTile';
 
 function App() {
+  const [title, setTitle] = useState(null)
+  const [workList, setWorkList] = useState([])
+
+  const handleSave = () => {
+    console.log('called')
+    setWorkList((prev) => [...workList, title])
+    setTitle('')
+  }
+
+  console.log('workList', workList)
+
+  const handleInputChange = (e) => {
+    setTitle(e.target.value)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type='text' value = {title} onChange={(e) => handleInputChange(e)} />
+      <input type='submit' text = 'Submit' onClick={handleSave} />
+      {workList.map((item) => {
+        return(
+          <WorkTile title = {item} workList = {workList} setWorkList = {setWorkList} />
+        )
+      })
+      }
     </div>
   );
 }
