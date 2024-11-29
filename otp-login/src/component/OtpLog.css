@@ -1,0 +1,12 @@
+.otpContainer{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: column;
+}
+
+.otpInput{
+    height: 40px;
+    width: 40px;
+    border: 1px solid black;
+}
